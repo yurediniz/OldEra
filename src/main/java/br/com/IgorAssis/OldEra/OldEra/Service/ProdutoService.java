@@ -11,19 +11,22 @@ public class ProdutoService {
     @Autowired
     private ProdutoRepository produtoRepository;
 
-    public Produto salvar(Produto produto) {
-        return produtoRepository.save(produto);
+    public List<Produto> buscarProdutosPorNome(String nome) {
+        return produtoRepository.buscarProdutosPorNome(nome);
     }
 
-    public List<Produto> listar() {
+    public List<Produto> buscarProdutosPorPreco(Double minPreco, Double maxPreco) {
+        return produtoRepository.buscarProdutosPorPreco(minPreco, maxPreco);
+    }
+
+    public List<Produto> buscarTodosOsProdutos() {
         return produtoRepository.findAll();
     }
 
-    public Optional<Produto> buscarPorId(Long id) {
-        return produtoRepository.findById(id);
+    public Produto salvarProduto(Produto produto) {
+        return produtoRepository.save(produto);
     }
 
-    public void excluir(Long id) {
+    public void deletarProduto(Long id) {
         produtoRepository.deleteById(id);
-    }
-}
+    }}
