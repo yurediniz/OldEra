@@ -1,4 +1,4 @@
-package br.com.IgorAssis.OldEra.OldEra;
+package br.com.IgorAssis.OldEra;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
