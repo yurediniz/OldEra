@@ -17,6 +17,4 @@ public class Produto implements Serializable {
     private double preco;
     private int quantidade;
 
-    // construtores, getters e setters
-
 }
