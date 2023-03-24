@@ -19,6 +19,4 @@ public class Cliente implements Serializable {
     private String email;
     private String endereco;
 
-
-
 }

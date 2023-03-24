@@ -17,7 +17,4 @@ public class Vendedor implements Serializable {
     private String nome;
     private String email;
     private String telefone;
-
-    // construtores, getters e setters
-
 }

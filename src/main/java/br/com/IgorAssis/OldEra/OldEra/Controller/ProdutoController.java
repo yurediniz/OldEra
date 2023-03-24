@@ -3,7 +3,6 @@ package br.com.IgorAssis.OldEra.OldEra.Controller;
 import br.com.IgorAssis.OldEra.OldEra.Entity.Produto;
 import br.com.IgorAssis.OldEra.OldEra.Service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,15 +24,15 @@ public class ProdutoController {
         return produtoService.buscarProdutosPorPreco(minPreco, maxPreco);
     }
 
-    @GetMapping
+    @GetMapping("/listar-todos")
     public List<Produto> buscarTodosOsProdutos() {
         return produtoService.buscarTodosOsProdutos();
     }
 
     @PostMapping
-    public void salvarProduto(@RequestBody Produto produto) {
+    public Produto salvarProduto(@RequestBody Produto produto) {
         Produto produtoSalvo = produtoService.salvarProduto(produto);
-
+        return produtoSalvo;
     }
 
     @DeleteMapping("/{id}")
