@@ -1,4 +1,4 @@
-package br.com.IgorAssis.OldEra.OldEra;
+package br.com.IgorAssis.OldEra;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
