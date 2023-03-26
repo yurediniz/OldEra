@@ -18,28 +18,25 @@ public class VendedorController {
     private VendedorService vendedorService;
 
     @PostMapping
-    public Vendedor criarVendedor(@RequestBody Vendedor vendedor) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<Vendedor> criarVendedor(@RequestBody Vendedor vendedor) {
         Vendedor vendedorCriado = vendedorService.salvar(vendedor);
-        return vendedorCriado;
+
+        return ResponseEntity.status(201).body(vendedorCriado);
     }
 
-    @GetMapping("/buscarPorId/{id}")
-    public ResponseEntity<Vendedor> buscarPorId(@PathVariable Long id) {
-        Optional<Vendedor> vendedor = vendedorService.buscarPorId(id);
-
-        if (vendedor.isPresent()) {
-            return ResponseEntity.ok(vendedor.get());
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Optional<Vendedor> buscarPorId(@PathVariable Long id) {
+        return vendedorService.buscarPorId(id);
     }
 
     @GetMapping("/listar-todos")
+    @ResponseStatus(HttpStatus.OK)
     public List<Vendedor> listar() { return vendedorService.listar(); }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) { vendedorService.excluir(id); }
-
 
 }
