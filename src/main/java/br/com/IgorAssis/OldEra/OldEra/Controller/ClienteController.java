@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {
@@ -18,32 +17,34 @@ public class ClienteController {
     private ClienteService clienteService;
 
     @PostMapping
-    public Cliente criarCliente(@RequestBody Cliente cliente) {
-        return clienteService.salvar(cliente);
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<Cliente> salvar(@RequestBody Cliente cliente) {
+        Cliente clienteSalvo = clienteService.salvar(cliente);
+
+        return ResponseEntity.status(201).body(clienteSalvo);
     }
 
     @GetMapping("/listar-todos")
+    @ResponseStatus(HttpStatus.OK)
     public List<Cliente> listar() {
         return clienteService.listar();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Cliente> buscarPorId(@PathVariable Long id) {
-        Optional<Cliente> cliente = clienteService.buscarPorId(id);
-
-        if (cliente.isPresent()) {
-            return ResponseEntity.ok(cliente.get());
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    @ResponseStatus(HttpStatus.OK)
+    public Optional<Cliente> buscarPorId(@PathVariable Long id) {
+        return clienteService.buscarPorId(id);
     }
+
     @GetMapping("/{nome}")
+    @ResponseStatus(HttpStatus.OK)
     public List<Cliente> buscaPorNome(@PathVariable String nome) {
         List<Cliente> cliente = clienteService.buscarPorNome(nome);
         return cliente;
     }
 
     @GetMapping("/{email}")
+    @ResponseStatus(HttpStatus.OK)
     public Integer contaPorEmail(@PathVariable String email) {
         Integer quant = clienteService.contaClientesPorEmail(email);
         return quant;
