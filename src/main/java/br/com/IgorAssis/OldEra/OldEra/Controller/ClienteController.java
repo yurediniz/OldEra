@@ -5,6 +5,7 @@ import br.com.IgorAssis.OldEra.OldEra.Service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,12 +26,14 @@ public class ClienteController {
     }
 
     @GetMapping("/listar-todos")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.OK)
     public List<Cliente> listar() {
         return clienteService.listar();
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @ResponseStatus(HttpStatus.OK)
     public Optional<Cliente> buscarPorId(@PathVariable Long id) {
         return clienteService.buscarPorId(id);
