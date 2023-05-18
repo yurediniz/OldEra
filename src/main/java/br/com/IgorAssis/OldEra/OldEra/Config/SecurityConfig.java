@@ -1,7 +1,6 @@
 package br.com.IgorAssis.OldEra.OldEra.Config;
 
 import br.com.IgorAssis.OldEra.OldEra.filter.FilterToken;
-import io.swagger.models.HttpMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

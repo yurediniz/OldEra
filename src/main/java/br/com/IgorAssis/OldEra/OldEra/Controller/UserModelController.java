@@ -1,6 +1,7 @@
 package br.com.IgorAssis.OldEra.OldEra.Controller;
 
 import br.com.IgorAssis.OldEra.OldEra.Entity.UserModel;
+import br.com.IgorAssis.OldEra.OldEra.Service.TokenService;
 import br.com.IgorAssis.OldEra.OldEra.Service.UserDetailsServiceImpl;
 import br.com.IgorAssis.OldEra.OldEra.authentication.TokenDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.token.TokenService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
