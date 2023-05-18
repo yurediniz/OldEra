@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/oldera?createDatabaseIfNotExist=true
     username: root
-    password: Admin@123
+    password: arroz123
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
