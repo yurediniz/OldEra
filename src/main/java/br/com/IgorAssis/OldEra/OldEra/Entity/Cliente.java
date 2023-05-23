@@ -14,15 +14,16 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Entity
 public class Cliente implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
+
     private String nome;
-    @Column
+
     private String email;
-    @Column
+
     private String telefone;
 
 }
