@@ -23,23 +23,25 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-
         return userRepository.findByUserName(username)
-                .orElseThrow(()-> new UsernameNotFoundException("Não foi encontrado o usúario:" + username));
-    }
+                .orElseThrow(() -> new UsernameNotFoundException("Não foi encontrado o usúario:" + username));
+
+//        return new User(userModel.getUserName(),
+//                userModel.getPassword(), true, true,
+//                true, true,userModel.getAuthorities());
+        }
 
     @Transactional
-    public UserModel criarUsuario(UserModel user){
+    public UserModel criarUsuario(UserModel user) {
 
         if (user.getUserName() != null && user.getPassword() != null && !user.getAuthorities().isEmpty()) {
             user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
 
             user = userRepository.save(user);
-        }else {
+        } else {
             throw new UsernameNotFoundException("Parametros null");
         }
 
         return user;
     }
-
 }

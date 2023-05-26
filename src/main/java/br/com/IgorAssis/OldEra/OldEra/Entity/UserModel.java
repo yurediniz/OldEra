@@ -39,9 +39,7 @@ public class UserModel implements UserDetails, Serializable {
         return roles;
     }
 
-    public void setRoles(List<RoleModel> roles) {
-        this.roles = roles;
-    }
+    public void setRoles(List<RoleModel> roles) { this.roles = roles; }
 
     @Override
     public String getPassword() {

@@ -1,9 +1,9 @@
 package br.com.IgorAssis.OldEra.OldEra.Controller;
 
 import br.com.IgorAssis.OldEra.OldEra.Entity.UserModel;
-import br.com.IgorAssis.OldEra.OldEra.Service.TokenService;
 import br.com.IgorAssis.OldEra.OldEra.Service.UserDetailsServiceImpl;
-import br.com.IgorAssis.OldEra.OldEra.authentication.TokenDto;
+import br.com.IgorAssis.OldEra.OldEra.Token.TokenDto;
+import br.com.IgorAssis.OldEra.OldEra.Token.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -28,9 +28,9 @@ public class UserModelController {
     @Autowired
     TokenService tokenService;
 
-    @RequestMapping(value="/criar-usuario", method = RequestMethod.POST)
+    @RequestMapping(value = "/criar-usuario", method = RequestMethod.POST)
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<UserModel>  criarUsuario (@RequestBody UserModel user) {
+    public ResponseEntity<UserModel> criarUsuario(@RequestBody UserModel user) {
 
         return ResponseEntity.status(201).body(service.criarUsuario(user));
     }
@@ -43,8 +43,8 @@ public class UserModelController {
 
         Authentication authentication =  this.authenticationManager.authenticate(userToken);
 
-        var usauario = (UserModel) authentication.getPrincipal();
+        var usuario = (UserModel) authentication.getPrincipal();
 
-        return ResponseEntity.ok(tokenService.gerarToken(usauario));
+        return ResponseEntity.ok(tokenService.gerarToken(usuario));
     }
 }
