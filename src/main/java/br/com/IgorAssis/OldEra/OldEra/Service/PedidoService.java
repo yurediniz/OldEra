@@ -1,6 +1,7 @@
 package br.com.IgorAssis.OldEra.OldEra.Service;
 
 import br.com.IgorAssis.OldEra.OldEra.Entity.Pedido;
+import br.com.IgorAssis.OldEra.OldEra.Entity.Produto;
 import br.com.IgorAssis.OldEra.OldEra.Repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,9 +16,7 @@ public class PedidoService {
 
     public Pedido salvar(Pedido pedido) {
 
-        pedido.setPreco(pedido.getProduto().getPreco());
-
-        double valorTotal = pedido.getProduto().getPreco() * pedido.getQuantidade();
+        double valorTotal = pedido.getProduto().stream().mapToDouble(Produto::getPreco).sum();
         pedido.setValorTotal(valorTotal);
 
         return pedidoRepository.save(pedido);
