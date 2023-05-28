@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 @Data
 @Builder(toBuilder = true)
@@ -32,7 +31,7 @@ public class Pedido implements Serializable {
 
     @ManyToOne(optional = true)
     @JoinColumn(name = "produto", referencedColumnName = "id")
-    private List<Produto> produto;
+    private Produto produto;
 
     private int quantidade;
 
@@ -40,8 +39,5 @@ public class Pedido implements Serializable {
 
     private double valorTotal;
 
-    public List<Produto> getProduto(){
-        return this.produto;
-    }
 
 }

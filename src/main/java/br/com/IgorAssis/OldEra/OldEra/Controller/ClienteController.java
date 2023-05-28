@@ -12,12 +12,13 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/clientes")
+@RequestMapping("/cliente")
 public class ClienteController {
     @Autowired
     private ClienteService clienteService;
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Cliente> salvar(@RequestBody Cliente cliente) {
         Cliente clienteSalvo = clienteService.salvar(cliente);
@@ -26,7 +27,7 @@ public class ClienteController {
     }
 
     @GetMapping("/listar-todos")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @ResponseStatus(HttpStatus.OK)
     public List<Cliente> listar() {
         return clienteService.listar();
@@ -40,6 +41,7 @@ public class ClienteController {
     }
 
     @GetMapping("/{nome}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @ResponseStatus(HttpStatus.OK)
     public List<Cliente> buscaPorNome(@PathVariable String nome) {
         List<Cliente> cliente = clienteService.buscarPorNome(nome);
@@ -47,6 +49,7 @@ public class ClienteController {
     }
 
     @GetMapping("/{email}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @ResponseStatus(HttpStatus.OK)
     public Integer contaPorEmail(@PathVariable String email) {
         Integer quant = clienteService.contaClientesPorEmail(email);
@@ -54,6 +57,7 @@ public class ClienteController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) { clienteService.excluir(id); }
 }

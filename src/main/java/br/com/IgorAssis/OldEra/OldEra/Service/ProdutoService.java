@@ -27,6 +27,12 @@ public class ProdutoService {
         return produtoRepository.save(produto);
     }
 
+    public long contarQuantidade() {
+        return buscarTodosOsProdutos().stream()
+                .mapToLong(produto -> 1)
+                .sum();
+    }
+
     public void deletarProduto(Long id) {
         produtoRepository.deleteById(id);
     }}
