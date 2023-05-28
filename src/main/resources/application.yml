@@ -9,7 +9,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/oldera?createDatabaseIfNotExist=true
     username: root
-    password: arroz123
+    password: Admin@123
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
@@ -17,9 +17,6 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
-  sql:
-    init:
-      mode: always
 springdoc:
   pathsToMatch:
     - /auth/**
