@@ -3,8 +3,10 @@ package br.com.IgorAssis.OldEra.OldEra.Service;
 import br.com.IgorAssis.OldEra.OldEra.Entity.Pedido;
 import br.com.IgorAssis.OldEra.OldEra.Entity.Produto;
 import br.com.IgorAssis.OldEra.OldEra.Repository.PedidoRepository;
+import br.com.IgorAssis.OldEra.OldEra.Repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -14,10 +16,15 @@ public class PedidoService {
     @Autowired
     private PedidoRepository pedidoRepository;
 
+    @Autowired
+    private ProdutoRepository produtoRepository;
+
     public Pedido salvar(Pedido pedido) {
 
-        double valorTotal = pedido.getProduto().stream().mapToDouble(Produto::getPreco).sum();
-        pedido.setValorTotal(valorTotal);
+        double preco = produtoRepository.getReferenceById(pedido.getProduto().getId()).getPreco();
+        pedido.setPreco(preco);
+
+        pedido.setValorTotal(preco * pedido.getQuantidade());
 
         return pedidoRepository.save(pedido);
     }
