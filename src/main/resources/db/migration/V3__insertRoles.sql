@@ -5,8 +5,8 @@ VALUES
 
 INSERT INTO user_model(user_name, password)
 VALUES
-    ('admin', '$2a$04$qcu79M01fmUFVK33j5X.BuEZHEER0DTFBPLmOyf.iegeLIIYuJnia'),
-    ('user', '$2a$04$.D3/TQb48W6Qq2vQBCEmZOdqLRhIvIMJdhw5PfPkAgdAtRQ8QUt/O');
+    ('admin', '$2a$04$qcu79M01fmUFVK33j5X.BuEZHEER0DTFBPLmOyf.iegeLIIYuJnia'), #senha: admin
+    ('user', '$2a$04$.D3/TQb48W6Qq2vQBCEmZOdqLRhIvIMJdhw5PfPkAgdAtRQ8QUt/O');   #senha: user
 
 INSERT INTO user_model_roles(user_id, role_id)
 VALUES

@@ -19,7 +19,7 @@ public class PedidoController {
     private PedidoService pedidoService;
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Pedido> salvar(@RequestBody Pedido pedido) {
         Pedido pedidoSalvo = pedidoService.salvar(pedido);
